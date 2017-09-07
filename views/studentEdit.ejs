@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STUDENTS</title>
+  <style>
+    table{width:500px;border:1px solid #333;}
+    table th{padding:5px;background: #ccc; text-align: left;}
+    table td{padding:5px;}
+  </style>
+</head>
+<body>
+  <h1>STUDENTS EDIT</h1>
+  <a href="/students">Show All Data</a>
+  <form action="/students/edit/<%=student.id%>" method="post">
+  <div>
+    <label><b>first Name<b></label><br>
+    <input type="text" name="first_name" value= "<%=student.first_name%>" placeholder="First Name">
+  </div>
+  <div>
+    <label><b>last Name<b></label><br>
+    <input type="text" name="last_name" value= "<%=student.last_name%>" placeholder="Last name">
+  </div>
+  <div>
+    <label><b>Email<b></label><br>
+    <input type="text" name="email" value= "<%=student.email%>" placeholder="your email">
+  </div>
+
+  <button type="submit" name="submit">Save</button>
+
+</body>
+</html>
