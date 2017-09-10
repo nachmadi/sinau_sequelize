@@ -13,6 +13,26 @@ router.get('/',(req, res)=>{
 
 });
 
+router.get('/tomany',(req, res)=>{
+  models.Subject.findAll({ include: [ models.Teacher ] })
+   .then(subject => {
+    console.log(subject);
+    res.send(subject);
+  })
+});
+
+router.get('/many',(req, res)=>{
+  models.Subject.findAll({
+    where: { SubjectId:1},
+    include: [models.StudentSubjects]
+  }).then((results) => {
+    console.log(results);
+    res.send(results);
+  });
+
+});
+
+
 // router.post('/',(req, res)=>{
 //    modulUser.insertUsers(
 //      req.body,

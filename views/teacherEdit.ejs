@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teacher</title>
+  <style>
+    table{width:500px;border:1px solid #333;}
+    table th{padding:5px;background: #ccc; text-align: left;}
+    table td{padding:5px;}
+  </style>
+</head>
+<body>
+  <h1>TEACHER EDIT</h1>
+  <a href="/teachers">Show All Data</a>
+  <form action="/teachers/edit/<%=teacher.id%>" method="post">
+  <div>
+    <label><b>first Name<b></label><br>
+    <input type="text" name="first_name" value= "<%=teacher.first_name%>" placeholder="First Name">
+  </div>
+  <div>
+    <label><b>last Name<b></label><br>
+    <input type="text" name="last_name" value= "<%=teacher.last_name%>" placeholder="Last name">
+  </div>
+  <div>
+    <label><b>Email<b></label><br>
+    <input type="text" name="email" value= "<%=teacher.email%>" placeholder="your email">
+  </div>
+
+  <div>
+    <label><b>Subject<b></label><br>
+    <select id="SubjectId">
+      <%  if(teacher.Subject!=null){  %>
+        <option value="<%=teacher.SubjectId%>"> <%=teacher.Subject.subject_name%> </option>
+      <% } %>
+      <% subject.forEach (dtSubject =>{ %>
+          <option value="<%=dtSubject.id %>"> <%=dtSubject.subject_name%> </option  <button type="submit" name="submit">Save</button>
+<% }) %>
+    </select>
+  </div>
+  <button type="submit" name="submit">Save</button>
+
+</body>
+</html>

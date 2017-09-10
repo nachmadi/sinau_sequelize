@@ -16,6 +16,6 @@ app.use('/teachers', modelTeachers);
 app.use('/subjects', modelSubjects);
 app.use('/students', modelStudents);
 
-app.listen(3000,()=>{
-  console.log('Listening Port 3000')
+app.listen(3001,()=>{
+  console.log('Listening Port 3001')
 });

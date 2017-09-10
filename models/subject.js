@@ -5,9 +5,19 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+
       }
     }
   });
+
+  Subject.associate = function(models){
+      Subject.hasMany(models.Teacher)
+      Subject.hasMany(models.StudentSubjects)
+  }
+
+  // Subject.associate = function(models){
+  //     Subject.hasMany(models.StudentSubjects)
+  // }
+
   return Subject;
 };

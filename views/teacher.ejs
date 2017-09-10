@@ -10,12 +10,14 @@
 </head>
 <body>
   <h1>TEACHERS</h1>
+  <a href="/teachers/add">ADD TEACHER</a>
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
       <th>ID</th>
       <th>FIRST NAME</th>
       <th>LAST NAME</th>
       <th>EMAIL</th>
+      <th>SUBJECT</th>
       <th>Action</th>
     </tr>
 
@@ -25,7 +27,12 @@
         <td>&nbsp<%= data.first_name %></td>
         <td>&nbsp<%= data.last_name %></td>
         <td>&nbsp<%= data.email %></td>
-        <td><a href="/teachers/edit/<%= data.id %>">Edit</a>|<a href="/teachers/delete/<%= data.id %>">Delete</a>|<a href="/teachers/detil/<%= data.id %>">One To Many</a></td>
+        <%if(data.Subject!==null){%>
+          <td>&nbsp<%= data.Subject.subject_name%></td>
+        <%}else{ %>
+          <td>unussigned</td>
+        <%}%>  
+        <td><a href="/teachers/edit/<%= data.id %>">Edit</a>|<a href="/teachers/delete/<%= data.id %>">Delete</a></td>
       </tr>
       <% }) %>
 
