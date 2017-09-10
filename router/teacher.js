@@ -8,8 +8,8 @@ router.get('/',(req, res)=>{
    models.Teacher.all({include:[{model:models.Subject}]})
       .then(allTeachers => {
         //console.log(allTeachers[0].Suject.subject_name);
-       //res.send({teachers:allTeachers});
-        res.render('teacher',{teachers:allTeachers});
+       res.send({teachers:allTeachers});
+      //  res.render('teacher',{teachers:allTeachers});
     })
 });
 
