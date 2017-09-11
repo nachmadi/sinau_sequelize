@@ -9,26 +9,23 @@
   </style>
 </head>
 <body>
-  <h1>SUBJECTS</h1>
+  <h1><%=subjects.subject_name %></h1>
   <a href="/">HOME</a>|
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
       <th>ID</th>
-      <th>SUBJECT NAME</th>
-      <th>Teacher</th>
-      <th>Action</th>
+      <th>Fist Name</th>
+      <th>Last Name</th>
+      <th>Skor</th>
+
     </tr>
 
-    <% subjects.forEach (data =>{%>
+    <% subjects.Students.forEach(data =>{%>
       <tr>
         <td>&nbsp<%= data.id %></td>
-        <td>&nbsp<%= data.subject_name %></td>
-        <td>
-            <% data.Teachers.forEach (dataTeachers =>{%>
-                <%= dataTeachers.first_name+" "+dataTeachers.last_name %><br>
-          <%})%>
-        </td>
-        <td><a href="/subjects/<%= data.id %>/enrolledstudents">Student Enroll</a></td>
+        <td>&nbsp<%= data.first_name%></td>
+        <td>&nbsp<%= data.last_name%></td>
+        <td>&nbsp<%= data.last_name%></td>
       </tr>
       <% }) %>
 
