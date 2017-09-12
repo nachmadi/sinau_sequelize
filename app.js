@@ -55,6 +55,6 @@ app.use(function (req, res) {
 //console.log('info dari petugas '+hashedPassword); // sha1$3I7HRwy7$cbfdac6008f9cab408
 
 
-app.listen(process.envPORT||3001,()=>{
+app.listen(process.env.PORT||3001,()=>{
   console.log('Listening Port 3001')
 });
