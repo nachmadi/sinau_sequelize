@@ -4,12 +4,21 @@ let router = express.Router();
 
 let models = require('../models');
 
+router.use(function (req, res, next) {
+  if ((req.session)&&(req.session.login)) {
+      next();
+  } else {
+      res.redirect('/login') // arahkan login
+  }
+})
+
+
 router.get('/',(req, res)=>{
    models.Teacher.all({include:[{model:models.Subject}]})
       .then(allTeachers => {
         //console.log(allTeachers[0].Suject.subject_name);
-       res.send({teachers:allTeachers});
-      //  res.render('teacher',{teachers:allTeachers});
+        //res.send({teachers:allTeachers});
+       res.render('teacher',{teachers:allTeachers});
     })
 });
 
@@ -76,6 +85,14 @@ router.post('/edit/:id',(req, res)=>{
   })
 })
 
+router.get('/subject',(req, res)=>{
+  models.Subject.findAll({ include: [ models.Teacher ] })
+   .then(subject => {
+    console.log(subject);
+    res.render('teacher_subject',{subjects:subject})
+    //res.send(subject);
+  })
+});
 
 // router.post('/',(req, res)=>{
 //    modulUser.insertUsers(

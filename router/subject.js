@@ -2,69 +2,58 @@
 let express =require('express');
 let router = express.Router();
 
+router.use(function (req, res, next) {
+  if ((req.session)&&(req.session.login)) {
+      next();
+  } else {
+      res.redirect('/login') // arahkan login
+  }
+})
+
+
 let models = require('../models');
 
-router.get('/',(req, res)=>{
-   models.Subject.all()
-      .then(allSubject => {
-      //res.send({subjects:allSubject});
-      res.render('subject',{subjects:allSubject,edit:false});
-    })
+// router.get('/',(req, res)=>{
+//    models.Subject.all()
+//       .then(allSubject => {
+//       //res.send({subjects:allSubject});
+//       res.render('subject',{subjects:allSubject});
+//     })
+//
+// });
 
+router.get('/',(req, res)=>{
+  models.Subject.all(
+    {
+    //where: { SubjectId:1},
+    include:[{ model:models.Teacher}]
+  }
+).then((results) => {
+    // console.log(results);
+    res.render('subject',{subjects:results});
+    //res.send(results);
+  });
 });
 
+
 router.get('/tomany',(req, res)=>{
-  models.Subject.findAll({ include: [ models.Teacher ] })
+  models.StudentSubjects.findAll({ include: [ models.Students ] })
    .then(subject => {
-    console.log(subject);
-    res.send(subject);
+    res.send({subject:subject});
   })
 });
 
-router.get('/many',(req, res)=>{
-  models.Subject.findAll({
-    where: { SubjectId:1},
-    include: [models.StudentSubjects]
-  }).then((results) => {
-    console.log(results);
-    res.send(results);
+router.get('/:id/enrolledstudents',(req, res)=>{
+  models.Subject.findOne(
+    {
+    where: {id:req.params.id},
+    include:[{ model:models.Students}]
+  }
+).then((results) => {
+    // console.log(results);
+    res.render('subjectEnrollStudent',{subjects:results});
+    //res.send({subjects:results});
   });
-
 });
-
-
-// router.post('/',(req, res)=>{
-//    modulUser.insertUsers(
-//      req.body,
-//      (err)=>{
-//         res.redirect('/');
-//      })
-// });
-//
-// router.get('/delete/:id',(req, res)=>{
-//     modulUser.deleteUsers(req.params.id,(err)=>{
-//         res.redirect('/users');
-//     })
-// })
-//
-// router.get('/edit/:id',(req, res)=>{
-//     modulUser.editUsers(req.params.id,(dataAllUser)=>{
-//         //res.send(dataAllUser);
-//         res.render('users',dataAllUser);
-//     })
-// })
-//
-// router.post('/edit/:id',(req, res)=>{
-//   modulUser.saveUsers(req.body,req.params.id,(err)=>{
-//     res.redirect('/users');
-//   })
-// })
-//
-// router.get('/detil/:id',(req, res)=>{
-//   modulAddr.oneToManyUsers(req.params.id,(dataAllUser)=>{
-//       //res.send(dataAllUser);
-//       res.render('one_to_many',dataAllUser);
-//   })
-// })
 
 module.exports = router;
