@@ -8,6 +8,7 @@ var md5 = require('md5');
 
 var modelLogin = require('./router/login.js');
 var modelIndex = require('./router/index.js');
+var modelUsers = require('./router/user.js');
 var modelTeachers = require('./router/teacher.js');
 var modelSubjects = require('./router/subject.js');
 var modelStudents = require('./router/student.js');
@@ -30,6 +31,7 @@ app.set('view engine', 'ejs');
 
 app.use('/login', modelLogin);
 app.use('/index', modelIndex);
+app.use('/users', modelUsers);
 app.use('/teachers', modelTeachers);
 app.use('/students', modelStudents);
 app.use('/subjects', modelSubjects);
@@ -47,13 +49,6 @@ app.use(function (req, res) {
       res.redirect('/login') // arahkan login
   }
 })
-
-//console.log(utility.planToHash("123"+"abc"));
-
-//console.log(md5('message'));
-//var hashedPassword = passwordHash.generate('password123');
-//console.log('info dari petugas '+hashedPassword); // sha1$3I7HRwy7$cbfdac6008f9cab408
-
 
 app.listen(process.env.PORT||3001,()=>{
   console.log('Listening Port 3001')

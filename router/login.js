@@ -7,9 +7,9 @@ var utility = require('../helper/util.js');
 router.get('/',(req, res)=>{
   res.render('login',{info:'Login tidak terdaftar!',err:false});
   // models.Petugas.create({
-  //     user_id: 'teacher6',
+  //     user_id: 'noer',
   //     user_pass: '123',
-  //     level_user:'teacher',
+  //     rool:'admin',
   //     salt:"123"
   // })
   // .then(result=>{

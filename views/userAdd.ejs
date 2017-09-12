@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>STUDENTS</title>
+  <style>
+    table{width:500px;border:1px solid #333;}
+    table th{padding:5px;background: #ccc; text-align: left;}
+    table td{padding:5px;}
+  </style>
+</head>
+<body>
+  <h1>STUDENTS ADD</h1>
+  <a href="/users">Show All Data</a>
+  <%if(err){  %>
+    <div id="info"><%=error%></div>
+  <%} %>
+  <form action="/users/add" method="post">
+  <div>
+    <label><b>User Id<b></label><br>
+    <input type="text" name="user_id" placeholder="id user">
+  </div>
+  <div>
+    <label><b>Pass id<b></label><br>
+    <input type="text" name="user_pass" placeholder="password">
+  </div>
+  <div>
+    <label><b>Rool<b></label><br>
+    <input type="text" name="rool" placeholder="rool user">
+  </div>
+
+  <button type="submit" name="submit">Add</button>
+</body>
+</html>

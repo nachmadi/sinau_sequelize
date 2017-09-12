@@ -1,13 +1,11 @@
 'use strict';
-var utility = require('../helper/util.js');
-
 module.exports = function(sequelize, DataTypes) {
   var Petugas = sequelize.define('Petugas', {
     user_id: DataTypes.STRING,
     user_pass: DataTypes.STRING,
-    level_user: DataTypes.STRING,
-    salt:DataTypes.STRING
-  }, {
+    rool: DataTypes.STRING,
+    salt: DataTypes.STRING
+  },{
     //triger
     hooks: {
       beforeCreate: (callBackObjekIni) => {
