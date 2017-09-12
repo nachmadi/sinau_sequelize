@@ -6,8 +6,8 @@ let models = require('../models');
 
 router.use(function (req, res, next) {
   if ((req.session)&&(req.session.login)) {
+    next();
   } else {
-      next();
       res.redirect('/login') // arahkan login
   }
 })
@@ -60,15 +60,16 @@ router.get('/delete/:id',(req, res)=>{
       where: {id: req.params.id}
   })
   .then(user => {
-       res.send({user:user,edit:true});
-       //res.render('UserEdit',{student:student});
+       //res.send({user:user,edit:true});
+       res.render('userEdit',{user:user});
   })
 })
 
 router.post('/edit/:id',(req, res)=>{
-  models.Students.update({
+  models.Petugas.update({
     user_id: req.body.user_id,
-    user_pass: req.body.user_pass,
+    //user_pass: req.body.user_pass,
+    rool:req.body.rool,
     salt: '123'},
     {where: { id: req.params.id} }
   )
